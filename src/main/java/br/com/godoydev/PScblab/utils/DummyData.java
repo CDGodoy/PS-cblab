@@ -3,6 +3,7 @@ package br.com.godoydev.PScblab.utils;
 import br.com.godoydev.PScblab.model.Usuario;
 import br.com.godoydev.PScblab.repository.UsuarioRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
@@ -19,15 +20,15 @@ public class DummyData {
     public void saveUsers(){
         List<Usuario> usuarios = new ArrayList<>();
         Usuario usuario1 =  new Usuario();
-        usuario1.setNome("Admin");
-        usuario1.setEmail("admin@admin.com");
-        usuario1.setSenha("admin");
+        usuario1.setNome("testeADM");
+        usuario1.setEmail("teste2@admin.com");
+        usuario1.setSenha(new BCryptPasswordEncoder().encode("admin"));
         usuario1.setSuperUser(true);
 
         Usuario usuario2 =  new Usuario();
-        usuario2.setNome("usuario");
-        usuario2.setEmail("usuario@usuario.com");
-        usuario2.setSenha("usuario");
+        usuario2.setNome("testeUSER");
+        usuario2.setEmail("user2@usuario.com");
+        usuario2.setSenha(new BCryptPasswordEncoder().encode("usuario"));
         usuario2.setSuperUser(false);
 
         usuarios.add(usuario1);

@@ -29,19 +29,24 @@ public class Usuario implements UserDetails {
     @Column(nullable = false)
     private String senha;
 
-    /*
     @ManyToMany
     @JoinTable(name = "usuarios_roles", joinColumns = @JoinColumn(
             name = "usuario_id", referencedColumnName = "email"),
     inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "nomeRole"))
     private List<Role> roles;
-*/
+
     private boolean superUser = false;
 
     public Usuario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;
         this.senha = senha;
+    }
+    public Usuario(String nome, String email, String senha, boolean superUser){
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.superUser = superUser;
     }
 
     @Override

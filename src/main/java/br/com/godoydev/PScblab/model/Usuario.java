@@ -43,6 +43,12 @@ public class Usuario implements UserDetails {
         this.email = email;
         this.senha = new BCryptPasswordEncoder().encode(senha);
     }
+    public Usuario(String nome, String email, String senha, boolean superUser){
+        this.nome = nome;
+        this.email = email;
+        this.senha = senha;
+        this.superUser = superUser;
+    }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

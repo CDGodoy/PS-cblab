@@ -2,14 +2,18 @@ package br.com.godoydev.PScblab.controller;
 
 import br.com.godoydev.PScblab.DTO.UsuarioDTO;
 import br.com.godoydev.PScblab.DTO.UsuarioResponseDTO;
-
+import br.com.godoydev.PScblab.model.Usuario;
 import br.com.godoydev.PScblab.services.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/usuario")

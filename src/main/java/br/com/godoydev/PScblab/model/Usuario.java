@@ -5,6 +5,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import javax.persistence.*;
 import java.util.Collection;
@@ -40,7 +41,7 @@ public class Usuario implements UserDetails {
     public Usuario(String nome, String email, String senha) {
         this.nome = nome;
         this.email = email;
-        this.senha = senha;
+        this.senha = new BCryptPasswordEncoder().encode(senha);
     }
     public Usuario(String nome, String email, String senha, boolean superUser){
         this.nome = nome;
@@ -51,7 +52,7 @@ public class Usuario implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return roles;
     }
 
     @Override

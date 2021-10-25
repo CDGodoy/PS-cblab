@@ -21,13 +21,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception{
         http.csrf().disable().authorizeRequests()
-                .antMatchers(HttpMethod.GET, "/").permitAll()
-                .antMatchers(HttpMethod.GET, "/usuario").permitAll()
-                .antMatchers(HttpMethod.POST,"/usuario").hasRole("ADMIN")
-                //.antMatchers(HttpMethod.GET,"/usuario/todos").hasRole("ADMIN")
-                .antMatchers(HttpMethod.GET,"/usuario/**").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/").authenticated()
+                .antMatchers(HttpMethod.GET,"/cadastrar").hasRole("ADMIN")
+                .antMatchers(HttpMethod.POST,"/cadastrar").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/todos").hasRole("ADMIN")
+                .antMatchers(HttpMethod.GET,"/{id}").hasRole("ADMIN")
                 .anyRequest().authenticated()
                 .and().formLogin().permitAll()
+                .and().exceptionHandling().accessDeniedPage("/acessoNegado")
                 .and().logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout"));
     }
 

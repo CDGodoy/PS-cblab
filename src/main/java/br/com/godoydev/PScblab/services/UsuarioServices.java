@@ -35,20 +35,16 @@ public class UsuarioServices {
         return usuarioRepository.findById(id).get();
     }
 
+    public Usuario save(UsuarioDTO dto){
+        return usuarioRepository.save(dto.transformaParaObjeto());
+    }
+
     public Usuario obtemAtual(){
         String username;
         Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 
         username = ((UserDetails)principal).getUsername();
- /*
-        Usuario usuarioLogado = new Usuario();
-        usuarioLogado.setId(findByEmail(username).getId());
-        usuarioLogado.setNome(findByEmail(username).getNome());
-        usuarioLogado.setSenha(findByEmail(username).getSenha());
-        usuarioLogado.setEmail(findByEmail(username).getEmail());
-        usuarioLogado.setSuperUser(findByEmail(username).isSuperUser());
 
-*/
         return findByEmail(username);
     }
 }

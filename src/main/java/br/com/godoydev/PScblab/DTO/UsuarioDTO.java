@@ -8,12 +8,12 @@ import lombok.Setter;
 @Setter
 public class UsuarioDTO {
 
-    private String name;
+    private String nome;
     private String email;
     private String senha;
 
     public Usuario transformaParaObjeto(){
-        return new Usuario(name, email, senha);
+        return new Usuario(nome, email, senha);
     }
 
 }

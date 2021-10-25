@@ -7,9 +7,6 @@ import br.com.godoydev.PScblab.services.UsuarioServices;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.annotation.AuthenticationPrincipal;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
@@ -17,8 +14,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.servlet.view.RedirectView;
 
 import javax.validation.Valid;
-import java.util.List;
-import java.util.Map;
+
 
 @RestController
 @RequestMapping()
@@ -38,11 +34,6 @@ public class UsuarioController {
         ModelAndView mv = new ModelAndView("cadastro");
         return mv;
     }
-    /*
-    @GetMapping("/todos")
-    ResponseEntity<List<UsuarioResponseDTO>> obterUsuarios(){
-        return new ResponseEntity<>(UsuarioResponseDTO.transformaListEmDTO(usuarioServices.findAll()), HttpStatus.OK);
-    }*/
 
     @GetMapping("/todos")
     public ModelAndView listar(){
@@ -70,12 +61,7 @@ public class UsuarioController {
         usuarioServices.save(dto);
         return new RedirectView("/todos");
     }
-/*
-    @GetMapping
-    ResponseEntity<UsuarioResponseDTO> usuarioAtual(){
-        return new ResponseEntity<>(UsuarioResponseDTO.transformaParaDTO(usuarioServices.obtemAtual()),HttpStatus.OK);
-    }
-*/
+
     @GetMapping("/{id}")
     ResponseEntity<UsuarioResponseDTO> obterUsuario(@PathVariable Long id){
 
